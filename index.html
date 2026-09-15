@@ -402,7 +402,6 @@
     display: block;
     padding: 10px;
 }
-}
   @media (max-width: 640px) {
     .product-img { height: 130px; }
   }
@@ -661,6 +660,128 @@
     .logo-text { font-size: 12px; }
     .logo-mark { font-size: 17px; padding: 4px 8px; }
   }
+
+  .modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 260px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 背景遮罩 */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* 弹窗主体 */
+.login-box {
+  background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 1px solid var(--border);
+  animation: popup 0.25s ease-out;
+}
+
+/* Logo（使用你的红色） */
+.login-logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+/* 弹出动画 */
+@keyframes popup {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 标题 */
+.login-box h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--black);
+  text-align: center;
+}
+
+/* 输入框 */
+.login-input {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s;
+  background: var(--gray);
+}
+
+.login-input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.2);
+}
+
+/* 登录按钮（红色主色） */
+.login-btn {
+  padding: 12px;
+  background: var(--red);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #a50d24; /* 深一点的红色 */
+}
+
+/* 关闭按钮（黑色） */
+.close-btn {
+  padding: 12px;
+  background: var(--black);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  background: #000;
+}
+
 </style>
 </head>
 <body>
@@ -675,23 +796,25 @@
       </span>
     </a>
 
-    <div class="search-box">
-      <input type="text" placeholder="Cerca prodotti...">
-      <button aria-label="Cerca">
-        <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </button>
-    </div>
+  <div class="search-box">
+  <input type="text" id="searchInput" placeholder="Cerca prodotti...">
+  <button aria-label="Cerca">
+    <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  </button>
+</div>
+
 
     <div class="header-icons">
-      <a href="#" aria-label="Account">
-        <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-      </a>
+      <a href="#" aria-label="Account" id="userIcon">
+  <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+    <circle cx="12" cy="7" r="4"></circle>
+  </svg>
+</a>
+
       <a href="#" aria-label="Carrello">
         <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="9" cy="21" r="1"></circle>
@@ -710,7 +833,7 @@
       <a href="#">Cosmetici</a>
       <a href="#">Pulizia</a>
       <a href="#">Elettronica</a>
-      <a href="#">Giocattoli</a>
+      <a href="giocattoli.html">Giocattoli</a>
       <a href="#">Cartoleria</a>
       <a href="#">Ferramenta</a>
       <a href="#">Piccoli Elettrodomestici</a>
@@ -795,7 +918,7 @@
       <span class="cat-name">Elettronica</span>
     </a>
 
-    <a href="#" class="cat-card">
+    <a href="giocattoli.html" class="cat-card">
       <span class="cat-icon">
         <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="8" r="5"></circle>
@@ -924,8 +1047,8 @@
        
         <div class="product-name">CHEN HAODA  </div>
         <div class="product-prices">
-          <span class="price-old">€250，00</span>
-          <span class="price-new">€0,99</span>
+          <span class="price-old">€250</span>
+          <span class="price-new">€0,9</span>
         </div>
         <button class="btn-add">Aggiungi</button>
       </div>
@@ -944,21 +1067,7 @@
         <button class="btn-add">Aggiungi</button>
       </div>
     </div>
-
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-       <img src="https://www.acquaesaponeonline.it/foto_prodotti/025814_F.jpg">
-      </div>
-      <div class="product-info">
-        <div class="product-name">MAXI CARTA IGIENICA PROFUMATA 4ROTOLI - 3 VELI</div>
-        <div class="product-prices">
-          <span class="price-new">€0.80</span>
-        </div>
-        <button class="btn-add">Aggiungi</button>
-      </div>
-    </div>
-
+       
     <div class="product-card">
       <div class="product-img">
         <span class="promo-tag">Prezzo Shock</span>
@@ -973,23 +1082,29 @@
         <button class="btn-add">Aggiungi</button>
       </div>
     </div>
-
+ <div class="product-card">
+      <div class="product-img">
+        <span class="promo-tag">Prezzo Shock</span>
+       <img src="https://www.acquaesaponeonline.it/foto_prodotti/025814_F.jpg">
+      </div>
+      <div class="product-info">
+        <div class="product-name">MAXI CARTA IGIENICA PROFUMATA 4ROTOLI - 3 VELI</div>
+        <div class="product-prices">
+          <span class="price-new">€0,80</span>
+        </div>
+        <button class="btn-add">Aggiungi</button>
+      </div>
+    </div>
+       
     <div class="product-card">
       <div class="product-img">
         <span class="promo-tag">Prezzo Shock</span>
-        <svg width="56" height="56" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"></circle>
-          <circle cx="6" cy="9" r="2"></circle>
-          <circle cx="18" cy="9" r="2"></circle>
-          <circle cx="7" cy="16" r="2"></circle>
-          <circle cx="17" cy="16" r="2"></circle>
-        </svg>
+        <img src="https://www.maxisupercarta.com/wp-content/uploads/2025/09/66062-1024x677.png">
       </div>
       <div class="product-info">
-        <div class="product-name">Cibo per Cani 2kg</div>
+        <div class="product-name">MAXI CARTA IGIENICA 12 ROTOLI XXL - 3 VELI</div>
         <div class="product-prices">
-          <span class="price-old">€8,90</span>
-          <span class="price-new">€5,99</span>
+          <span class="price-new">€2,99</span>
         </div>
         <button class="btn-add">Aggiungi</button>
       </div>
@@ -998,18 +1113,12 @@
     <div class="product-card">
       <div class="product-img">
         <span class="promo-tag">Prezzo Shock</span>
-        <svg width="56" height="56" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"></path>
-          <path d="M2 2l7.586 7.586"></path>
-          <circle cx="11" cy="11" r="2"></circle>
-        </svg>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHrcDkNuopOQH8jlA7jsUBJ98RV7T0_Aj-3YN2T1jt3Q&s=10">
       </div>
       <div class="product-info">
-        <div class="product-name">Quaderno A4 Fantasia</div>
+        <div class="product-name">TUTTO PANNOCARTA</div>
         <div class="product-prices">
-          <span class="price-old">€1,50</span>
-          <span class="price-new">€0,90</span>
+          <span class="price-new">€1,79</span>
         </div>
         <button class="btn-add">Aggiungi</button>
       </div>
@@ -1018,17 +1127,12 @@
     <div class="product-card">
       <div class="product-img">
         <span class="promo-tag">Prezzo Shock</span>
-        <svg width="56" height="56" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 11h18"></path>
-          <path d="M5 11V7a7 7 0 0 1 14 0v4"></path>
-          <path d="M4 11v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"></path>
-        </svg>
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtp97eloFQfpJzxsoaSwEsmw9Xs165gnmbfTPrIwi_9A&s=10">
       </div>
       <div class="product-info">
-        <div class="product-name">Noodles Asiatici 5 Pezzi</div>
+        <div class="product-name">VOILET CARTA IGIENICA 10 ROTOLI - 2 VELI</div>
         <div class="product-prices">
-          <span class="price-old">€5,50</span>
-          <span class="price-new">€3,99</span>
+          <span class="price-new">€1,10</span>
         </div>
         <button class="btn-add">Aggiungi</button>
       </div>
@@ -1037,9 +1141,7 @@
     <div class="product-card">
       <div class="product-img">
         <span class="promo-tag">Prezzo Shock</span>
-        <svg width="56" height="56" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-        </svg>
+      <img src="">
       </div>
       <div class="product-info">
         <div class="product-name">Set Utensili Base</div>
@@ -1050,26 +1152,6 @@
         <button class="btn-add">Aggiungi</button>
       </div>
     </div>
-
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-        <svg width="56" height="56" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="8" r="5"></circle>
-          <path d="M8 13v7l4-2 4 2v-7"></path>
-        </svg>
-      </div>
-      <div class="product-info">
-        <div class="product-name">Peluche Bambino</div>
-        <div class="product-prices">
-          <span class="price-old">€9,90</span>
-          <span class="price-new">€6,99</span>
-        </div>
-        <button class="btn-add">Aggiungi</button>
-      </div>
-    </div>
-
-  </div>
 </section>
 
 <section class="delivery-banner">
@@ -1132,7 +1214,7 @@
           <circle cx="12" cy="12" r="10"></circle>
           <polyline points="12 6 12 12 16 14"></polyline>
         </svg>
-        <span><strong>Orari:</strong> Lun–Sab 8:30–19:30 | Dom Chiuso</span>
+        <span><strong>Orari:</strong>  Lun – Dom     9:00 – 20:00 </span>
       </p>
       <p>
         <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -1187,6 +1269,130 @@
     © 2026 DY STORE HOME CASA & BRICO — Tutti i diritti riservati. P.IVA [DA INSERIRE]
   </div>
 </footer>
+
+<script>
+document.getElementById("searchInput").addEventListener("input", function () {
+    let filter = this.value.toLowerCase();
+
+    // 找到所有商品卡片（你的页面里每个商品都是一个 div，里面有名字和价格）
+    let products = document.querySelectorAll(".product-card, .offer-card, .shock-card, .product");
+
+    products.forEach(product => {
+        let text = product.innerText.toLowerCase();
+
+        if (text.includes(filter)) {
+            product.style.display = "";
+        } else {
+            product.style.display = "none";
+        }
+    });
+});
+</script>
+<div id="loginModal" class="modal" style="display:none;">
+  <div class="login-box">
+
+    <div class="login-topbar"></div>
+
+    <div class="login-logo">DY STORE</div>
+
+    <h2>Login Admin</h2>
+
+    <input type="text" id="loginUser" placeholder="Username" class="login-input">
+    <input type="password" id="loginPass" placeholder="Password" class="login-input">
+
+    <button id="loginBtn" class="login-btn">Login</button>
+    <button id="closeLogin" class="close-btn">Chiudi</button>
+  </div>
+</div>
+
+
+
+<script>
+  // 打开弹窗
+  document.getElementById("userIcon").addEventListener("click", function (e) {
+    e.preventDefault(); // 阻止跳转 #
+    document.getElementById("loginModal").style.display = "flex";
+  });
+
+  // 关闭弹窗
+  document.getElementById("closeLogin").addEventListener("click", function () {
+    document.getElementById("loginModal").style.display = "none";
+  });
+</script>
+
+<script>
+  const ADMIN_USER = "DYStore";
+  const ADMIN_PASS = "123456789";
+
+  document.getElementById("loginBtn").addEventListener("click", function () {
+    const u = document.getElementById("loginUser").value;
+    const p = document.getElementById("loginPass").value;
+
+    if (u === ADMIN_USER && p === ADMIN_PASS) {
+      window.location.href = "admin.html";  // 登录成功后跳转
+    } else {
+      alert("帳號或密碼錯誤！");
+    }
+  });
+</script>
+
+
+<script>
+  function enterAdminMode() {
+    const adminPanel = document.createElement("div");
+    adminPanel.id = "adminPanel";
+    adminPanel.style.position = "fixed";
+    adminPanel.style.bottom = "20px";
+    adminPanel.style.right = "20px";
+    adminPanel.style.zIndex = "1000";
+
+    adminPanel.innerHTML = `
+      <button id="addProductBtn" style="padding:10px 15px;">➕ 添加商品</button>
+    `;
+
+    document.body.appendChild(adminPanel);
+
+    document.getElementById("addProductBtn").addEventListener("click", function () {
+      const name = prompt("商品名稱：");
+      const price = prompt("商品價格：");
+
+      if (name && price) {
+        addNewProduct(name, price);
+      }
+    });
+  }
+</script>
+<script>
+function loadProductsToHome() {
+  const container = document.querySelector(".products");
+  container.innerHTML = "";
+
+  const category = categorySelect.value;
+  const data = JSON.parse(localStorage.getItem("products_" + category)) || [];
+
+  data.forEach(item => {
+    container.innerHTML += `
+      <div class="product-card">
+        <div class="product-img">
+          <span class="promo-tag">Prezzo Shock</span>
+          <img src="${item.img}">
+        </div>
+        <div class="product-info">
+          <div class="product-name">${item.name}</div>
+          <div class="product-prices">
+            <span class="price-new">€${item.price}</span>
+            ${item.oldPrice ? `<span class="price-old">€${item.oldPrice}</span>` : ""}
+          </div>
+          <button class="btn-add">Aggiungi</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+loadProducts();
+loadProductsToHome();
+</script>
 
 </body>
 </html>
