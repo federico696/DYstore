@@ -6,782 +6,158 @@
 <title>DY STORE HOME CASA & BRICO - Fiorenzuola d'Arda</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --black: #111111;
-    --red: #C8102E;
-    --gray: #f5f5f5;
-    --border: #e8e8e8;
-    --text-muted: #666;
-  }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: var(--black);
-    background: #fff;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-
+  :root { --black:#111111; --red:#C8102E; --gray:#f5f5f5; --border:#e8e8e8; --text-muted:#666; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; color:var(--black); background:#fff; line-height:1.5; -webkit-font-smoothing:antialiased; }
   svg { display: block; }
 
-  /* HEADER */
-  .header {
-    background: var(--black);
-    color: #fff;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
-  }
-
-  .header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 20px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: #fff;
-    white-space: nowrap;
-  }
-
-  .logo-mark {
-    background: var(--red);
-    color: #fff;
-    font-weight: 900;
-    font-size: 20px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    line-height: 1;
-  }
-
-  .logo-text {
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 1.15;
-    letter-spacing: 0.5px;
-  }
-
-  .logo-text small {
-    display: block;
-    font-weight: 400;
-    font-size: 9px;
-    letter-spacing: 3px;
-    opacity: 0.75;
-  }
-
-  .search-box {
-    flex: 1;
-    max-width: 420px;
-    display: flex;
-    background: #fff;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid #333;
-  }
-
-  .search-box input {
-    flex: 1;
-    border: none;
-    padding: 10px 14px;
-    font-size: 14px;
-    outline: none;
-    color: var(--black);
-  }
-
-  .search-box button {
-    background: var(--red);
-    color: #fff;
-    border: none;
-    padding: 0 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .header-icons {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
-
-  .header-icons a {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: opacity 0.2s;
-  }
-
-  .header-icons a:hover { opacity: 0.7; }
-
-  .cart-badge {
-    position: absolute;
-    top: -6px;
-    right: -8px;
-    background: var(--red);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* NAV */
-  .nav {
-    background: #1a1a1a;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    border-top: 1px solid #2a2a2a;
-  }
-
-  .nav::-webkit-scrollbar { height: 0; }
-
-  .nav-inner {
-    display: inline-flex;
-    padding: 0 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .nav a {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 12px 15px;
-    display: inline-block;
-    transition: color 0.2s, border-color 0.2s;
-    border-bottom: 2px solid transparent;
-  }
-
-  .nav a:hover {
-    color: #fff;
-    border-bottom-color: var(--red);
-  }
-
-  /* HERO */
-  .hero {
-    background: linear-gradient(135deg, #111 0%, #2a0008 100%);
-    color: #fff;
-    padding: 70px 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -40%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(200,16,46,0.25) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-badge {
-    display: inline-block;
-    background: var(--red);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    padding: 6px 16px;
-    border-radius: 20px;
-    margin-bottom: 24px;
-    text-transform: uppercase;
-  }
-
-  .hero h1 {
-    font-size: clamp(30px, 5vw, 50px);
-    font-weight: 900;
-    margin-bottom: 14px;
-    line-height: 1.08;
-    letter-spacing: -0.5px;
-  }
-
-  .hero h1 span { color: var(--red); }
-
-  .hero p {
-    font-size: clamp(14px, 2vw, 17px);
-    opacity: 0.85;
-    margin-bottom: 32px;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--red);
-    color: #fff;
-    text-decoration: none;
-    padding: 14px 32px;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 15px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    letter-spacing: 0.3px;
-  }
-
-  .hero-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(200,16,46,0.45);
-  }
-
-  /* SECTION */
-  .section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
-  }
-
-  .section-title {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    letter-spacing: -0.3px;
-  }
-
-  .section-title::before {
-    content: '';
-    width: 4px;
-    height: 26px;
-    background: var(--red);
-    border-radius: 2px;
-  }
-
-  .section-sub {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin-bottom: 32px;
-    margin-left: 16px;
-  }
-
-  /* CATEGORIES */
-  .categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-  }
-
-  .cat-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 12px 20px;
-    text-align: center;
-    text-decoration: none;
-    color: var(--black);
-    transition: all 0.25s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .cat-card:hover {
-    background: var(--black);
-    color: #fff;
-    border-color: var(--black);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
-  }
-
-  .cat-card:hover .cat-icon svg { stroke: #fff; }
-
-  .cat-icon svg {
-    stroke: var(--black);
-    stroke-width: 1.5;
-    fill: none;
-    transition: stroke 0.25s ease;
-  }
-
-  .cat-name {
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-
-  /* PRODUCTS */
-  .promo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 28px;
-  }
-
-  .promo-count {
-    background: var(--red);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 5px 14px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .products {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  @media (max-width: 900px) {
-    .products { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  @media (max-width: 640px) {
-    .products { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  }
-
-  .product-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.25s ease;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .product-card:hover {
-    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
-    transform: translateY(-4px);
-    border-color: #ddd;
-  }
-
-  .product-img {
-    height: 170px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #fafafa, #f0f0f0);
-    position: relative;
-    color: #bbb;
-  }
-.product-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    padding: 10px;
-}
-  @media (max-width: 640px) {
-    .product-img { height: 130px; }
-  }
-
-  .product-img svg {
-    stroke: #bbb;
-    stroke-width: 1.2;
-    fill: none;
-  }
-
-  .promo-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: var(--red);
-    color: #fff;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-transform: uppercase;
-  }
-
-  .product-info {
-    padding: 14px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .product-name {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    line-height: 1.35;
-    flex: 1;
-  }
-
-  .product-prices {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-
-  .price-old {
-    font-size: 13px;
-    color: #999;
-    text-decoration: line-through;
-  }
-
-  .price-new {
-    font-size: 20px;
-    font-weight: 900;
-    color: var(--red);
-    letter-spacing: -0.5px;
-  }
-
-  .btn-add {
-    background: var(--black);
-    color: #fff;
-    border: none;
-    padding: 11px;
-    border-radius: 6px;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s;
-    width: 100%;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .btn-add:hover { background: var(--red); }
-
-  /* DELIVERY */
-  .delivery-banner {
-    background: var(--black);
-    color: #fff;
-    padding: 60px 20px;
-    text-align: center;
-  }
-
-  .delivery-banner-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .delivery-banner h2 {
-    font-size: clamp(22px, 3vw, 30px);
-    font-weight: 900;
-    margin-bottom: 36px;
-    letter-spacing: -0.5px;
-  }
-
-  .delivery-banner h2 span { color: var(--red); }
-
-  .delivery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-  }
-
-  .delivery-item {
-    padding: 28px 20px;
-    border: 1px solid #2a2a2a;
-    border-radius: 12px;
-    transition: border-color 0.2s;
-  }
-
-  .delivery-item:hover { border-color: var(--red); }
-
-  .delivery-item .icon {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
-
-  .delivery-item .icon svg {
-    stroke: var(--red);
-    stroke-width: 1.5;
-    fill: none;
-  }
-
-  .delivery-item h3 {
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .delivery-item p {
-    font-size: 13px;
-    color: #aaa;
-    line-height: 1.5;
-  }
-
-  /* STORE INFO */
-  .store-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-  }
-
-  @media (max-width: 768px) {
-    .store-info { grid-template-columns: 1fr; gap: 28px; }
-  }
-
-  .store-info h2 {
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 24px;
-    letter-spacing: -0.3px;
-  }
-
-  .store-info p {
-    font-size: 15px;
-    color: #333;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    line-height: 1.5;
-  }
-
-  .store-info p svg {
-    flex-shrink: 0;
-    stroke: var(--red);
-    stroke-width: 1.5;
-    fill: none;
-    margin-top: 2px;
-  }
-
-  .store-info p strong { color: var(--black); font-weight: 700; }
-
-  .map-placeholder {
-    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-    border-radius: 12px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    font-size: 13px;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid var(--border);
-    gap: 10px;
-  }
-
-  .map-placeholder svg {
-    stroke: #999;
-    stroke-width: 1.5;
-    fill: none;
-  }
-
-  /* FOOTER */
-  .footer {
-    background: var(--black);
-    color: #999;
-    padding: 50px 20px 24px;
-    font-size: 13px;
-  }
-
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 36px;
-    margin-bottom: 36px;
-  }
-
-  .footer h4 {
-    color: #fff;
-    font-size: 14px;
-    margin-bottom: 16px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
-  .footer a {
-    color: #999;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
-    transition: color 0.2s;
-  }
-
-  .footer a:hover { color: var(--red); }
-
-  .footer-bottom {
-    border-top: 1px solid #222;
-    padding-top: 24px;
-    text-align: center;
-    font-size: 12px;
-    color: #666;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  /* MOBILE HEADER */
-  @media (max-width: 768px) {
-    .header-top {
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 12px 16px;
-    }
-    .search-box {
-      order: 3;
-      max-width: 100%;
-      width: 100%;
-    }
-    .logo-text { font-size: 12px; }
-    .logo-mark { font-size: 17px; padding: 4px 8px; }
-  }
-
-  .modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  min-width: 260px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* 背景遮罩 */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-/* 弹窗主体 */
-.login-box {
-  background: #ffffff;
-  padding: 28px 32px;
-  border-radius: 10px;
-  width: 320px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  border: 1px solid var(--border);
-  animation: popup 0.25s ease-out;
-}
-
-/* Logo（使用你的红色） */
-.login-logo {
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--red);
-  text-align: center;
-  margin-bottom: 5px;
-  letter-spacing: 1px;
-}
-
-/* 弹出动画 */
-@keyframes popup {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-/* 标题 */
-.login-box h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--black);
-  text-align: center;
-}
-
-/* 输入框 */
-.login-input {
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 15px;
-  outline: none;
-  transition: 0.2s;
-  background: var(--gray);
-}
-
-.login-input:focus {
-  border-color: var(--red);
-  box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.2);
-}
-
-/* 登录按钮（红色主色） */
-.login-btn {
-  padding: 12px;
-  background: var(--red);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.login-btn:hover {
-  background: #a50d24; /* 深一点的红色 */
-}
-
-/* 关闭按钮（黑色） */
-.close-btn {
-  padding: 12px;
-  background: var(--black);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.close-btn:hover {
-  background: #000;
-}
-
+  .header { background:var(--black); color:#fff; position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,0.2); }
+  .header-top { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; max-width:1200px; margin:0 auto; gap:20px; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; white-space:nowrap; }
+  .logo-mark { background:var(--red); color:#fff; font-weight:900; font-size:20px; padding:5px 10px; border-radius:4px; letter-spacing:1px; line-height:1; }
+  .logo-text { font-weight:700; font-size:13px; line-height:1.15; letter-spacing:0.5px; }
+  .logo-text small { display:block; font-weight:400; font-size:9px; letter-spacing:3px; opacity:0.75; }
+  .search-box { flex:1; max-width:420px; display:flex; background:#fff; border-radius:6px; overflow:hidden; border:1px solid #333; }
+  .search-box input { flex:1; border:none; padding:10px 14px; font-size:14px; outline:none; color:var(--black); }
+  .search-box button { background:var(--red); color:#fff; border:none; padding:0 16px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .header-icons { display:flex; gap:20px; align-items:center; }
+  .header-icons a { color:#fff; display:flex; align-items:center; justify-content:center; position:relative; transition:opacity 0.2s; }
+  .header-icons a:hover { opacity:0.7; }
+  .cart-badge { position:absolute; top:-6px; right:-8px; background:var(--red); color:#fff; font-size:10px; font-weight:700; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+  .nav { background:#1a1a1a; overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; border-top:1px solid #2a2a2a; }
+  .nav::-webkit-scrollbar { height:0; }
+  .nav-inner { display:inline-flex; padding:0 10px; max-width:1200px; margin:0 auto; }
+  .nav a { color:#ccc; text-decoration:none; font-size:13px; font-weight:500; padding:12px 15px; display:inline-block; transition:color 0.2s, border-color 0.2s; border-bottom:2px solid transparent; }
+  .nav a:hover { color:#fff; border-bottom-color:var(--red); }
+
+  .hero { background:linear-gradient(135deg,#111 0%,#2a0008 100%); color:#fff; padding:70px 20px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; top:-40%; right:-10%; width:600px; height:600px; background:radial-gradient(circle,rgba(200,16,46,0.25) 0%,transparent 70%); pointer-events:none; }
+  .hero-content { max-width:800px; margin:0 auto; position:relative; z-index:1; }
+  .hero-badge { display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:700; letter-spacing:3px; padding:6px 16px; border-radius:20px; margin-bottom:24px; text-transform:uppercase; }
+  .hero h1 { font-size:clamp(30px,5vw,50px); font-weight:900; margin-bottom:14px; line-height:1.08; letter-spacing:-0.5px; }
+  .hero h1 span { color:var(--red); }
+  .hero p { font-size:clamp(14px,2vw,17px); opacity:0.85; margin-bottom:32px; max-width:560px; margin-left:auto; margin-right:auto; }
+  .hero-cta { display:inline-flex; align-items:center; gap:8px; background:var(--red); color:#fff; text-decoration:none; padding:14px 32px; border-radius:6px; font-weight:700; font-size:15px; transition:transform 0.2s, box-shadow 0.2s; letter-spacing:0.3px; }
+  .hero-cta:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(200,16,46,0.45); }
+
+  .section { max-width:1200px; margin:0 auto; padding:60px 20px; }
+  .section-title { font-size:24px; font-weight:800; margin-bottom:8px; display:flex; align-items:center; gap:12px; letter-spacing:-0.3px; }
+  .section-title::before { content:''; width:4px; height:26px; background:var(--red); border-radius:2px; }
+  .section-sub { color:var(--text-muted); font-size:14px; margin-bottom:32px; margin-left:16px; }
+
+  .categories { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; }
+  .cat-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:24px 12px 20px; text-align:center; text-decoration:none; color:var(--black); transition:all 0.25s ease; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .cat-card:hover { background:var(--black); color:#fff; border-color:var(--black); transform:translateY(-3px); box-shadow:0 10px 24px rgba(0,0,0,0.15); }
+  .cat-card:hover .cat-icon svg { stroke:#fff; }
+  .cat-icon svg { stroke:var(--black); stroke-width:1.5; fill:none; transition:stroke 0.25s ease; }
+  .cat-name { font-size:12px; font-weight:600; line-height:1.3; }
+
+  .promo-header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+  .promo-count { background:var(--red); color:#fff; font-size:11px; font-weight:700; padding:5px 14px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; }
+
+  .products { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  @media (max-width:900px) { .products { grid-template-columns:repeat(3,1fr); gap:18px; } }
+  @media (max-width:640px) { .products { grid-template-columns:repeat(2,1fr); gap:12px; } }
+
+  .lp-card { --lp-black:#0e0e10; --lp-red:#C8102E; --lp-muted:#8a8a92; position:relative; background:#ffffff; border-radius:18px; overflow:hidden; display:flex; flex-direction:column; isolation:isolate; cursor:pointer; box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.04),0 16px 32px -18px rgba(0,0,0,.10); transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s cubic-bezier(.2,.8,.2,1); }
+  .lp-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--lp-red),#ff6b6b,var(--lp-red)); background-size:200% 100%; opacity:0; transition:opacity .5s ease; z-index:5; }
+  .lp-card:hover { transform:translateY(-8px); box-shadow:0 2px 4px rgba(0,0,0,.05),0 12px 24px rgba(0,0,0,.06),0 30px 60px -20px rgba(0,0,0,.18); }
+  .lp-card:hover::before { opacity:1; animation:lp-slide 2.5s ease infinite; }
+  @keyframes lp-slide { 0% { background-position:200% 0; } 100% { background-position:-100% 0; } }
+
+  .lp-img { position:relative; height:200px; background:radial-gradient(circle at 50% 40%,#ffffff 0%,#f3f3f6 70%,#ebebef 100%); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .lp-img::after { content:''; position:absolute; inset:auto 0 0 0; height:40%; background:linear-gradient(to bottom,transparent,rgba(255,255,255,.85)); pointer-events:none; z-index:1; }
+  .lp-img img { position:relative; width:100%; height:100%; object-fit:contain; padding:20px; transition:transform .7s cubic-bezier(.2,.8,.2,1); z-index:1; }
+  .lp-card:hover .lp-img img { transform:scale(1.1) rotate(-1.5deg); }
+
+  .lp-tag { position:absolute; top:14px; left:14px; z-index:3; background:linear-gradient(135deg,#d81a3a 0%,#C8102E 100%); color:#fff; font-size:9px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; padding:7px 12px; border-radius:100px; box-shadow:0 4px 14px rgba(200,16,46,.35),inset 0 1px 0 rgba(255,255,255,.2); }
+
+  .lp-actions { position:absolute; top:14px; right:14px; z-index:3; display:flex; flex-direction:column; gap:8px; opacity:0; transform:translateX(8px); transition:opacity .4s ease, transform .4s cubic-bezier(.2,.8,.2,1); }
+  .lp-card:hover .lp-actions { opacity:1; transform:translateX(0); }
+  .lp-icon-btn { width:34px; height:34px; border-radius:50%; border:none; background:rgba(255,255,255,.75); backdrop-filter:blur(12px) saturate(180%); -webkit-backdrop-filter:blur(12px) saturate(180%); box-shadow:0 2px 8px rgba(0,0,0,.08),inset 0 1px 0 rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .25s ease, transform .25s ease; color:var(--lp-black); }
+  .lp-icon-btn:hover { background:#ffffff; transform:scale(1.08); }
+  .lp-icon-btn:active { transform:scale(.94); }
+  .lp-icon-btn svg { width:15px; height:15px; stroke:currentColor; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+  .lp-info { padding:16px 18px 20px; display:flex; flex-direction:column; gap:10px; flex:1; position:relative; z-index:2; background:#ffffff; }
+  .lp-cat { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--lp-muted); }
+  .lp-name { font-size:13.5px; font-weight:600; line-height:1.4; color:var(--lp-black); letter-spacing:-.15px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; min-height:38px; }
+  .lp-rating { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--lp-muted); }
+  .lp-stars { display:inline-flex; gap:2px; }
+  .lp-stars svg { width:11px; height:11px; fill:#f5a623; stroke:none; }
+
+  .lp-prices { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+  .lp-price-new { font-size:21px; font-weight:900; color:var(--lp-black); letter-spacing:-0.8px; line-height:1; font-feature-settings:"tnum"; }
+  .lp-price-new .lp-currency { color:var(--lp-red); }
+  .lp-price-old { font-size:12.5px; color:var(--lp-muted); text-decoration:line-through; font-feature-settings:"tnum"; }
+
+  .lp-stock { display:flex; align-items:center; gap:6px; font-size:10.5px; font-weight:600; letter-spacing:.3px; color:#2c8a4a; }
+  .lp-stock::before { content:''; width:6px; height:6px; border-radius:50%; background:#2c8a4a; box-shadow:0 0 0 3px rgba(44,138,74,.15); animation:lp-pulse 1.8s ease infinite; }
+  @keyframes lp-pulse { 0%,100% { box-shadow:0 0 0 3px rgba(44,138,74,.15); } 50% { box-shadow:0 0 0 6px rgba(44,138,74,0); } }
+
+  .lp-btn { position:relative; overflow:hidden; background:var(--lp-black); color:#fff; border:none; padding:12px 14px; border-radius:11px; font-size:11px; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; font-family:inherit; margin-top:auto; transition:color .3s ease, transform .12s ease; }
+  .lp-btn::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,#e01840,var(--lp-red)); transform:translateY(101%); transition:transform .45s cubic-bezier(.2,.8,.2,1); z-index:0; }
+  .lp-btn:hover::before { transform:translateY(0); }
+  .lp-btn:active { transform:scale(.97); }
+  .lp-btn > * { position:relative; z-index:1; }
+  .lp-btn svg { width:13px; height:13px; stroke:currentColor; stroke-width:2.4; fill:none; stroke-linecap:round; stroke-linejoin:round; transition:transform .35s cubic-bezier(.2,.8,.2,1); }
+  .lp-btn:hover svg { transform:rotate(90deg); }
+
+  .delivery-banner { background:var(--black); color:#fff; padding:60px 20px; text-align:center; }
+  .delivery-banner-inner { max-width:1000px; margin:0 auto; }
+  .delivery-banner h2 { font-size:clamp(22px,3vw,30px); font-weight:900; margin-bottom:36px; letter-spacing:-0.5px; }
+  .delivery-banner h2 span { color:var(--red); }
+  .delivery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+  .delivery-item { padding:28px 20px; border:1px solid #2a2a2a; border-radius:12px; transition:border-color 0.2s; }
+  .delivery-item:hover { border-color:var(--red); }
+  .delivery-item .icon { display:flex; justify-content:center; margin-bottom:16px; }
+  .delivery-item .icon svg { stroke:var(--red); stroke-width:1.5; fill:none; }
+  .delivery-item h3 { font-size:15px; font-weight:700; margin-bottom:8px; }
+  .delivery-item p { font-size:13px; color:#aaa; line-height:1.5; }
+
+  .store-info { display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+  @media (max-width:768px) { .store-info { grid-template-columns:1fr; gap:28px; } }
+  .store-info h2 { font-size:24px; font-weight:800; margin-bottom:24px; letter-spacing:-0.3px; }
+  .store-info p { font-size:15px; color:#333; margin-bottom:14px; display:flex; align-items:flex-start; gap:12px; line-height:1.5; }
+  .store-info p svg { flex-shrink:0; stroke:var(--red); stroke-width:1.5; fill:none; margin-top:2px; }
+  .store-info p strong { color:var(--black); font-weight:700; }
+  .map-placeholder { background:linear-gradient(135deg,#f0f0f0,#e0e0e0); border-radius:12px; height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#888; font-size:13px; text-align:center; padding:20px; border:1px solid var(--border); gap:10px; }
+  .map-placeholder svg { stroke:#999; stroke-width:1.5; fill:none; }
+
+  .footer { background:var(--black); color:#999; padding:50px 20px 24px; font-size:13px; }
+  .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:36px; margin-bottom:36px; }
+  .footer h4 { color:#fff; font-size:14px; margin-bottom:16px; font-weight:700; letter-spacing:0.5px; }
+  .footer a { color:#999; text-decoration:none; display:block; margin-bottom:8px; transition:color 0.2s; }
+  .footer a:hover { color:var(--red); }
+  .footer-bottom { border-top:1px solid #222; padding-top:24px; text-align:center; font-size:12px; color:#666; max-width:1200px; margin:0 auto; }
+
+  @media (max-width:768px) {
+    .header-top { flex-wrap:wrap; gap:12px; padding:12px 16px; }
+    .search-box { order:3; max-width:100%; width:100%; }
+    .logo-text { font-size:12px; }
+    .logo-mark { font-size:17px; padding:4px 8px; }
+    .lp-img { height:160px; }
+  }
+
+  .modal { position:fixed; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; z-index:999; }
+  .login-box { background:#ffffff; padding:28px 32px; border-radius:10px; width:320px; box-shadow:0 12px 40px rgba(0,0,0,0.25); display:flex; flex-direction:column; gap:18px; border:1px solid var(--border); animation:popup 0.25s ease-out; }
+  .login-logo { font-size:26px; font-weight:800; color:var(--red); text-align:center; margin-bottom:5px; letter-spacing:1px; }
+  @keyframes popup { from { transform:scale(0.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+  .login-box h2 { margin:0; font-size:20px; font-weight:700; color:var(--black); text-align:center; }
+  .login-input { padding:12px 14px; border:1px solid var(--border); border-radius:6px; font-size:15px; outline:none; transition:0.2s; background:var(--gray); }
+  .login-input:focus { border-color:var(--red); box-shadow:0 0 0 2px rgba(200,16,46,0.2); }
+  .login-btn { padding:12px; background:var(--red); color:white; border:none; border-radius:6px; font-size:15px; cursor:pointer; font-weight:600; transition:0.2s; }
+  .login-btn:hover { background:#a50d24; }
+  .close-btn { padding:12px; background:var(--black); color:white; border:none; border-radius:6px; font-size:15px; cursor:pointer; font-weight:600; transition:0.2s; }
+  .close-btn:hover { background:#000; }
+
+  /* ============ 标签配色变体（只保留一次）============ */
+  .lp-tag[data-tag-type="shock"] { background:linear-gradient(135deg,#d81a3a 0%,#C8102E 100%); box-shadow:0 4px 14px rgba(200,16,46,.35),inset 0 1px 0 rgba(255,255,255,.2); }
+  .lp-tag[data-tag-type="new"] { background:linear-gradient(135deg,#15803d 0%,#22c55e 100%); box-shadow:0 4px 14px rgba(34,197,94,.4),inset 0 1px 0 rgba(255,255,255,.25); }
+  .lp-tag[data-tag-type="last"] { background:linear-gradient(135deg,#c2410c 0%,#f97316 100%); box-shadow:0 4px 14px rgba(249,115,22,.4),inset 0 1px 0 rgba(255,255,255,.25); }
+  .lp-tag[data-tag-type="top"] { background:linear-gradient(135deg,#b45309 0%,#f59e0b 100%); box-shadow:0 4px 14px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.25); }
+  .lp-tag[data-tag-type="dark"] { background:linear-gradient(135deg,#1f1f23 0%,#0e0e10 100%); box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1); }
+  .lp-tag .lp-discount { display:inline-block; margin-left:6px; padding-left:6px; border-left:1px solid rgba(255,255,255,.35); font-weight:900; letter-spacing:0.5px; }
 </style>
 </head>
 <body>
@@ -790,58 +166,33 @@
   <div class="header-top">
     <a href="#" class="logo">
       <span class="logo-mark">DY</span>
-      <span class="logo-text">
-        STORE HOME
-        <small>CASA & BRICO</small>
-      </span>
+      <span class="logo-text">STORE HOME<small>CASA & BRICO</small></span>
     </a>
-
-  <div class="search-box">
-  <input type="text" id="searchInput" placeholder="Cerca prodotti...">
-  <button aria-label="Cerca">
-    <svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"></circle>
-      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-    </svg>
-  </button>
-</div>
-
-
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Cerca prodotti...">
+      <button aria-label="Cerca"><svg width="18" height="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+    </div>
     <div class="header-icons">
-      <a href="#" aria-label="Account" id="userIcon">
-  <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-    <circle cx="12" cy="7" r="4"></circle>
-  </svg>
-</a>
-
-      <a href="#" aria-label="Carrello">
-        <svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        <span class="cart-badge">0</span>
-      </a>
+      <a href="#" aria-label="Account" id="userIcon"><svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+      <a href="#" aria-label="Carrello"><svg width="22" height="22" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-badge">0</span></a>
     </div>
   </div>
-
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#">Prodotti Asiatici</a>
-      <a href="#">Casa</a>
-      <a href="#">Cosmetici</a>
-      <a href="#">Pulizia</a>
-      <a href="#">Elettronica</a>
+          <a href="prodotti-asiatici.html">Prodotti Asiatici</a>
+      <a href="casa.html">Casa</a>
+      <a href="cosmetici.html">Cosmetici</a>
+      <a href="pulizia.html">Pulizia</a>
+      <a href="elettronica.html">Elettronica</a>
       <a href="giocattoli.html">Giocattoli</a>
-      <a href="#">Cartoleria</a>
-      <a href="#">Ferramenta</a>
-      <a href="#">Piccoli Elettrodomestici</a>
-      <a href="#">Regali</a>
-      <a href="#">Auto</a>
-      <a href="#">Plastica</a>
-      <a href="#">Animali</a>
-      <a href="#">Cibo per Animali</a>
+      <a href="cartoleria.html">Cartoleria</a>
+      <a href="ferramenta.html">Ferramenta</a>
+      <a href="piccoli-elettrodomestici.html">Piccoli Elettrodomestici</a>
+      <a href="regali.html">Regali</a>
+      <a href="auto.html">Auto</a>
+      <a href="plastica.html">Plastica</a>
+      <a href="animali.html">Animali</a>
+      <a href="cibo-per-animali.html">Cibo per Animali</a>
     </div>
   </nav>
 </header>
@@ -851,12 +202,9 @@
     <span class="hero-badge">Offerte del Mese</span>
     <h1>Prezzi <span>Shock</span> tutto l'anno</h1>
     <p>Scopri le offerte del mese su prodotti per la casa, cura personale, animali e molto altro.</p>
-    <a href="#" class="hero-cta">
+    <a href="#offerte" class="hero-cta">
       Vedi tutte le offerte
-      <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-        <polyline points="12 5 19 12 12 19"></polyline>
-      </svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
     </a>
   </div>
 </section>
@@ -865,335 +213,247 @@
   <h2 class="section-title">Categorie</h2>
   <p class="section-sub">Trova rapidamente quello che cerchi</p>
   <div class="categories">
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 11h18"></path>
-          <path d="M5 11V7a7 7 0 0 1 14 0v4"></path>
-          <path d="M4 11v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Prodotti Asiatici</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-        </svg>
-      </span>
-      <span class="cat-name">Casa</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Cosmetici</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 2h6v4H9z"></path>
-          <path d="M7 6h10l1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"></path>
-          <line x1="10" y1="11" x2="10" y2="16"></line>
-          <line x1="14" y1="11" x2="14" y2="16"></line>
-        </svg>
-      </span>
-      <span class="cat-name">Pulizia</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="7" y="2" width="10" height="20" rx="2"></rect>
-          <line x1="12" y1="18" x2="12.01" y2="18"></line>
-        </svg>
-      </span>
-      <span class="cat-name">Elettronica</span>
-    </a>
-
-    <a href="giocattoli.html" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="8" r="5"></circle>
-          <path d="M8 13v7l4-2 4 2v-7"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Giocattoli</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"></path>
-          <path d="M2 2l7.586 7.586"></path>
-          <circle cx="11" cy="11" r="2"></circle>
-        </svg>
-      </span>
-      <span class="cat-name">Cartoleria</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Ferramenta</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6L6 18"></path>
-          <path d="M9 3H6a3 3 0 0 0-3 3v3"></path>
-          <path d="M15 3h3a3 3 0 0 1 3 3v3"></path>
-          <path d="M9 21H6a3 3 0 0 1-3-3v-3"></path>
-          <path d="M15 21h3a3 3 0 0 0 3-3v-3"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Piccoli Elettrodomestici</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 12 20 22 4 22 4 12"></polyline>
-          <rect x="2" y="7" width="20" height="5"></rect>
-          <line x1="12" y1="22" x2="12" y2="7"></line>
-          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
-          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Regali</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 17h14v-5l-2-5H7L5 12z"></path>
-          <circle cx="7.5" cy="17.5" r="1.5"></circle>
-          <circle cx="16.5" cy="17.5" r="1.5"></circle>
-        </svg>
-      </span>
-      <span class="cat-name">Auto</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 8l3-4h12l3 4"></path>
-          <path d="M3 8h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <line x1="8" y1="12" x2="8" y2="16"></line>
-        </svg>
-      </span>
-      <span class="cat-name">Plastica</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"></circle>
-          <circle cx="6" cy="9" r="2"></circle>
-          <circle cx="18" cy="9" r="2"></circle>
-          <circle cx="7" cy="16" r="2"></circle>
-          <circle cx="17" cy="16" r="2"></circle>
-        </svg>
-      </span>
-      <span class="cat-name">Animali</span>
-    </a>
-
-    <a href="#" class="cat-card">
-      <span class="cat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 5.172a4 4 0 0 0-8 0v9a4 4 0 0 0 8 0"></path>
-          <path d="M14 5.172a4 4 0 0 1 8 0v9a4 4 0 0 1-8 0"></path>
-          <path d="M10 5v9"></path>
-          <path d="M14 5v9"></path>
-          <path d="M10 10h4"></path>
-        </svg>
-      </span>
-      <span class="cat-name">Cibo per Animali</span>
-    </a>
-
+    <a href="prodotti-asiatici.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"></path><path d="M5 11V7a7 7 0 0 1 14 0v4"></path><path d="M4 11v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"></path></svg></span><span class="cat-name">Prodotti Asiatici</span></a>
+    <a href="casa.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span><span class="cat-name">Casa</span></a>
+   <a href="cosmetici.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"></path></svg></span><span class="cat-name">Cosmetici</span></a>
+    <a href="pulizia.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6v4H9z"></path><path d="M7 6h10l1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"></path><line x1="10" y1="11" x2="10" y2="16"></line><line x1="14" y1="11" x2="14" y2="16"></line></svg></span><span class="cat-name">Pulizia</span></a>
+  <a href="elettronica.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></span><span class="cat-name">Elettronica</span></a>
+    <a href="giocattoli.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"></circle><path d="M8 13v7l4-2 4 2v-7"></path></svg></span><span class="cat-name">Giocattoli</span></a>
+    <a href="cartoleria.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></span><span class="cat-name">Cartoleria</span></a>
+    <a href="ferramenta.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span><span class="cat-name">Ferramenta</span></a>
+    <a href="piccoli-elettrodomestici.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"></path><path d="M9 3H6a3 3 0 0 0-3 3v3"></path><path d="M15 3h3a3 3 0 0 1 3 3v3"></path><path d="M9 21H6a3 3 0 0 1-3-3v-3"></path><path d="M15 21h3a3 3 0 0 0 3-3v-3"></path></svg></span><span class="cat-name">Piccoli Elettrodomestici</span></a>
+   <a href="regali.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg></span><span class="cat-name">Regali</span></a>
+  <a href="auto.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14v-5l-2-5H7L5 12z"></path><circle cx="7.5" cy="17.5" r="1.5"></circle><circle cx="16.5" cy="17.5" r="1.5"></circle></svg></span><span class="cat-name">Auto</span></a>
+   <a href="plastica.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l3-4h12l3 4"></path><path d="M3 8h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><line x1="8" y1="12" x2="8" y2="16"></line></svg></span><span class="cat-name">Plastica</span></a>
+    <a href="animali.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><circle cx="6" cy="9" r="2"></circle><circle cx="18" cy="9" r="2"></circle><circle cx="7" cy="16" r="2"></circle><circle cx="17" cy="16" r="2"></circle></svg></span><span class="cat-name">Animali</span></a>
+    <a href="cibo-per-animali.html" class="cat-card"><span class="cat-icon"><svg width="28" height="28" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.172a4 4 0 0 0-8 0v9a4 4 0 0 0 8 0"></path><path d="M14 5.172a4 4 0 0 1 8 0v9a4 4 0 0 1-8 0"></path><path d="M10 5v9"></path><path d="M14 5v9"></path><path d="M10 10h4"></path></svg></span><span class="cat-name">Cibo per Animali</span></a>
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="offerteSection">
   <div class="promo-header">
     <div>
       <h2 class="section-title">Prodotti in Offerta</h2>
       <p class="section-sub">Prezzi validi fino a esaurimento scorte</p>
     </div>
-    <span class="promo-count">12 Offerte</span>
+    <span class="promo-count" id="promoCount">0 Offerte</span>
   </div>
-
-  <div class="products">
-
-     <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">SUPER OFFERTA</span>
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu3LMM3e9j4-6aN9UhZmyJLWF1ds5UiPlP2xZZPETvLGQPo86dckkBnxs&s=10">
-      </div
-      </div>
-      <div class="product-info">
-       
-        <div class="product-name">CHEN HAODA  </div>
-        <div class="product-prices">
-          <span class="price-old">€250</span>
-          <span class="price-new">€0,9</span>
+  <div class="products" id="offerProducts">
+        <!-- LEGO Star Wars Battaglia di Hoth -->
+    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/battle-of-hoth-20th-anniversary-edition-40333', '_blank')" style="cursor: pointer;">
+      <div class="lp-img">
+        <span class="lp-tag" data-tag-type="top">EDIZIONE LIMITATA</span>
+        <div class="lp-actions">
+          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
         </div>
-        <button class="btn-add">Aggiungi</button>
+        <img src="https://images.brickset.com/sets/images/40333-1.jpg" alt="LEGO Star Wars Battaglia di Hoth">
+      </div>
+      <div class="lp-info">
+        <span class="lp-cat">Star Wars</span>
+        <div class="lp-name">LEGO Star Wars – Battaglia di Hoth (20° Anniversario)</div>
+        <div class="lp-rating">
+          <span class="lp-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <span>4.9 · 87 recensioni</span>
+        </div>
+        <div class="lp-prices">
+          <span class="lp-price-new"><span class="lp-currency">€</span>49,90</span>
+        </div>
+        <div class="lp-stock">Disponibile in negozio</div>
+        <button class="lp-btn" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Aggiungi</span>
+        </button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-    <img src="https://lifemarket.it/cdn/shop/files/55963-Bobina-Mega-1700-MAXI-2R-2V-366STR-png_380x.png?v=1774342549">
-      </div>
-      <div class="product-info">
-        <div class="product-name">MAXI ASCIUGATUTTO 2 MEGA BOBINE - BOBINA 2V ULTRA 1700</div>
-        <div class="product-prices">
-          <span class="price-new">€4,99</span>
+    <!-- LEGO Technic Ford GT40 MKII -->
+    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/1966-ford-gt40-mkii-race-car-42223', '_blank')" style="cursor: pointer;">
+      <div class="lp-img">
+        <span class="lp-tag" data-tag-type="shock">PREZZO SHOCK</span>
+        <div class="lp-actions">
+          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
         </div>
-        <button class="btn-add">Aggiungi</button>
+        <img src="https://images.brickset.com/sets/images/42223-1.jpg" alt="LEGO Technic Ford GT40 MKII 1966">
       </div>
-    </div>
-       
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-        <img src="https://www.maxisupercarta.com/wp-content/uploads/2021/10/Asciugatutto-2-veli-super-assorbenti.png">
-      </div>
-      
-      <div class="product-info">
-        <div class="product-name">MAXI ASCIUGATUTTO  2 ROTOLI - 2VELI SUPER ASSORBENTI </div>
-        <div class="product-prices">
-          <span class="price-new">€1,10</span>
+      <div class="lp-info">
+        <span class="lp-cat">Technic</span>
+        <div class="lp-name">LEGO Technic – Ford GT40 MKII 1966</div>
+        <div class="lp-rating">
+          <span class="lp-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <span>4.8 · 56 recensioni</span>
         </div>
-        <button class="btn-add">Aggiungi</button>
-      </div>
-    </div>
- <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-       <img src="https://www.acquaesaponeonline.it/foto_prodotti/025814_F.jpg">
-      </div>
-      <div class="product-info">
-        <div class="product-name">MAXI CARTA IGIENICA PROFUMATA 4ROTOLI - 3 VELI</div>
-        <div class="product-prices">
-          <span class="price-new">€0,80</span>
+        <div class="lp-prices">
+          <span class="lp-price-new"><span class="lp-currency">€</span>69,90</span>
+          <span class="lp-price-old">€74,99</span>
         </div>
-        <button class="btn-add">Aggiungi</button>
-      </div>
-    </div>
-       
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-        <img src="https://www.maxisupercarta.com/wp-content/uploads/2025/09/66062-1024x677.png">
-      </div>
-      <div class="product-info">
-        <div class="product-name">MAXI CARTA IGIENICA 12 ROTOLI XXL - 3 VELI</div>
-        <div class="product-prices">
-          <span class="price-new">€2,99</span>
-        </div>
-        <button class="btn-add">Aggiungi</button>
+        <div class="lp-stock">Disponibile in negozio</div>
+        <button class="lp-btn" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Aggiungi</span>
+        </button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHrcDkNuopOQH8jlA7jsUBJ98RV7T0_Aj-3YN2T1jt3Q&s=10">
-      </div>
-      <div class="product-info">
-        <div class="product-name">TUTTO PANNOCARTA</div>
-        <div class="product-prices">
-          <span class="price-new">€1,79</span>
+    <!-- LEGO City Furgone delle Consegne -->
+    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/the-lego-van-60500', '_blank')" style="cursor: pointer;">
+      <div class="lp-img">
+        <span class="lp-tag" data-tag-type="last">ULTIMI PEZZI</span>
+        <div class="lp-actions">
+          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
         </div>
-        <button class="btn-add">Aggiungi</button>
+        <img src="https://images.brickset.com/sets/images/60500-1.jpg" alt="LEGO City Furgone delle Consegne">
+      </div>
+      <div class="lp-info">
+        <span class="lp-cat">City</span>
+        <div class="lp-name">LEGO City – Furgone delle Consegne</div>
+        <div class="lp-rating">
+          <span class="lp-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <span>4.7 · 123 recensioni</span>
+        </div>
+        <div class="lp-prices">
+          <span class="lp-price-new"><span class="lp-currency">€</span>23,99</span>
+          <span class="lp-price-old">€29,99</span>
+        </div>
+        <div class="lp-stock">Disponibile in negozio</div>
+        <button class="lp-btn" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Aggiungi</span>
+        </button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtp97eloFQfpJzxsoaSwEsmw9Xs165gnmbfTPrIwi_9A&s=10">
-      </div>
-      <div class="product-info">
-        <div class="product-name">VOILET CARTA IGIENICA 10 ROTOLI - 2 VELI</div>
-        <div class="product-prices">
-          <span class="price-new">€1,10</span>
+    <!-- LEGO Technic Ducati Panigale V4 S -->
+    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/ducati-panigale-v4-s-motorcycle-42202', '_blank')" style="cursor: pointer;">
+      <div class="lp-img">
+        <span class="lp-tag" data-tag-type="shock">PREZZO SHOCK</span>
+        <div class="lp-actions">
+          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
         </div>
-        <button class="btn-add">Aggiungi</button>
+        <img src="https://images.brickset.com/sets/images/42202-1.jpg" alt="LEGO Technic Ducati Panigale V4 S">
+      </div>
+      <div class="lp-info">
+        <span class="lp-cat">Technic</span>
+        <div class="lp-name">LEGO Technic – Ducati Panigale V4 S</div>
+        <div class="lp-rating">
+          <span class="lp-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <span>4.9 · 201 recensioni</span>
+        </div>
+        <div class="lp-prices">
+          <span class="lp-price-new"><span class="lp-currency">€</span>189,99</span>
+          <span class="lp-price-old">€199,99</span>
+        </div>
+        <div class="lp-stock">Disponibile in negozio</div>
+        <button class="lp-btn" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Aggiungi</span>
+        </button>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img">
-        <span class="promo-tag">Prezzo Shock</span>
-      <img src="">
-      </div>
-      <div class="product-info">
-        <div class="product-name">Set Utensili Base</div>
-        <div class="product-prices">
-          <span class="price-old">€12,90</span>
-          <span class="price-new">€8,99</span>
+    <!-- LEGO Harry Potter Castello di Hogwarts: Ala Est -->
+    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/hogwarts-castle-east-wing-76473', '_blank')" style="cursor: pointer;">
+      <div class="lp-img">
+        <span class="lp-tag" data-tag-type="new">NUOVO ARRIVO</span>
+        <div class="lp-actions">
+          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </button>
         </div>
-        <button class="btn-add">Aggiungi</button>
+        <img src="https://images.brickset.com/sets/images/76473-1.jpg" alt="LEGO Harry Potter Castello di Hogwarts: Ala Est">
+      </div>
+      <div class="lp-info">
+        <span class="lp-cat">Harry Potter</span>
+        <div class="lp-name">LEGO Harry Potter – Castello di Hogwarts: Ala Est</div>
+        <div class="lp-rating">
+          <span class="lp-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </span>
+          <span>5.0 · 34 recensioni</span>
+        </div>
+        <div class="lp-prices">
+          <span class="lp-price-new"><span class="lp-currency">€</span>224,99</span>
+          <span class="lp-price-old">€249,99</span>
+        </div>
+        <div class="lp-stock">Disponibile in negozio</div>
+        <button class="lp-btn" onclick="event.stopPropagation()">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Aggiungi</span>
+        </button>
       </div>
     </div>
+  </div>
 </section>
 
 <section class="delivery-banner">
   <div class="delivery-banner-inner">
     <h2>Consegna <span>Gratuita</span> a Fiorenzuola d'Arda</h2>
     <div class="delivery-grid">
-
       <div class="delivery-item">
-        <span class="icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13"></rect>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-            <circle cx="18.5" cy="18.5" r="2.5"></circle>
-          </svg>
-        </span>
+        <span class="icon"><svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></span>
         <h3>Consegna a Domicilio</h3>
         <p>Gratuita per ordini superiori a 50€. Solo nella zona di Fiorenzuola d'Arda.</p>
       </div>
-
       <div class="delivery-item">
-        <span class="icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
-        </span>
+        <span class="icon"><svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
         <h3>Ritiro in Negozio</h3>
         <p>Ordina online e ritira direttamente in negozio, senza costi aggiuntivi.</p>
       </div>
-
       <div class="delivery-item">
-        <span class="icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-            <line x1="1" y1="10" x2="23" y2="10"></line>
-          </svg>
-        </span>
+        <span class="icon"><svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></span>
         <h3>Pagamento Flessibile</h3>
         <p>Paga online oppure alla consegna / al ritiro. Scegli tu.</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -1202,37 +462,13 @@
   <div class="store-info">
     <div>
       <h2>Vieni a Trovarci</h2>
-      <p>
-        <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
-        <span><strong>Indirizzo:</strong> Via Europa, 318 - Fiorenzuola d'Arda (PC)</span>
-      </p>
-      <p>
-        <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <span><strong>Orari:</strong>  Lun – Dom     9:00 – 20:00 </span>
-      </p>
-      <p>
-        <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-        </svg>
-        <span><strong>Negozio:</strong> DY STORE HOME CASA & BRICO</span>
-      </p>
-      <p style="margin-top:24px; color:#666; font-size:13px;">
-        Tutto per la casa, la cura personale, gli animali e molto altro. Ti aspettiamo!
-      </p>
+      <p><svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span><strong>Indirizzo:</strong> Via Europa, 318 - Fiorenzuola d'Arda (PC)</span></p>
+      <p><svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span><strong>Orari:</strong>  Lun – Dom     9:00 – 20:00 </span></p>
+      <p><svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span><strong>Negozio:</strong> DY STORE HOME CASA & BRICO</span></p>
+      <p style="margin-top:24px; color:#666; font-size:13px;">Tutto per la casa, la cura personale, gli animali e molto altro. Ti aspettiamo!</p>
     </div>
-
     <div class="map-placeholder">
-      <svg width="40" height="40" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-        <circle cx="12" cy="10" r="3"></circle>
-      </svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       <div>Mappa — Via Europa, 318<br>Fiorenzuola d'Arda (PC)</div>
     </div>
   </div>
@@ -1240,158 +476,198 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <div>
-      <h4>DY STORE HOME</h4>
-      <p style="line-height:1.7;">CASA & BRICO<br>Via Europa, 318<br>Fiorenzuola d'Arda (PC)</p>
-    </div>
-    <div>
-      <h4>Categorie</h4>
-      <a href="#">Prodotti Asiatici</a>
-      <a href="#">Casa</a>
-      <a href="#">Cosmetici</a>
-      <a href="#">Pulizia</a>
-      <a href="#">Animali</a>
-    </div>
-    <div>
-      <h4>Informazioni</h4>
-      <a href="#">Chi Siamo</a>
-      <a href="#">Consegna e Ritiro</a>
-      <a href="#">Termini e Condizioni</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Cookie Policy</a>
-    </div>
-    <div>
-      <h4>Pagamenti</h4>
-      <p style="line-height:1.9;">Carta di Credito<br>PayPal<br>Alla Consegna</p>
-    </div>
+    <div><h4>DY STORE HOME</h4><p style="line-height:1.7;">CASA & BRICO<br>Via Europa, 318<br>Fiorenzuola d'Arda (PC)</p></div>
+    <div><h4>Categorie</h4><a href="#">Prodotti Asiatici</a><a href="#">Casa</a><a href="#">Cosmetici</a><a href="#">Pulizia</a><a href="#">Animali</a></div>
+    <div><h4>Informazioni</h4><a href="#">Chi Siamo</a><a href="#">Consegna e Ritiro</a><a href="#">Termini e Condizioni</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div>
+    <div><h4>Pagamenti</h4><p style="line-height:1.9;">Carta di Credito<br>PayPal<br>Alla Consegna</p></div>
   </div>
-  <div class="footer-bottom">
-    © 2026 DY STORE HOME CASA & BRICO — Tutti i diritti riservati. P.IVA [DA INSERIRE]
-  </div>
+  <div class="footer-bottom">© 2026 DY STORE HOME CASA & BRICO — Tutti i diritti riservati. P.IVA [DA INSERIRE]</div>
 </footer>
 
-<script>
-document.getElementById("searchInput").addEventListener("input", function () {
-    let filter = this.value.toLowerCase();
-
-    // 找到所有商品卡片（你的页面里每个商品都是一个 div，里面有名字和价格）
-    let products = document.querySelectorAll(".product-card, .offer-card, .shock-card, .product");
-
-    products.forEach(product => {
-        let text = product.innerText.toLowerCase();
-
-        if (text.includes(filter)) {
-            product.style.display = "";
-        } else {
-            product.style.display = "none";
-        }
-    });
-});
-</script>
 <div id="loginModal" class="modal" style="display:none;">
   <div class="login-box">
-
-    <div class="login-topbar"></div>
-
     <div class="login-logo">DY STORE</div>
-
     <h2>Login Admin</h2>
-
     <input type="text" id="loginUser" placeholder="Username" class="login-input">
     <input type="password" id="loginPass" placeholder="Password" class="login-input">
-
     <button id="loginBtn" class="login-btn">Login</button>
     <button id="closeLogin" class="close-btn">Chiudi</button>
   </div>
 </div>
 
-
-
 <script>
-  // 打开弹窗
-  document.getElementById("userIcon").addEventListener("click", function (e) {
-    e.preventDefault(); // 阻止跳转 #
-    document.getElementById("loginModal").style.display = "flex";
-  });
-
-  // 关闭弹窗
-  document.getElementById("closeLogin").addEventListener("click", function () {
-    document.getElementById("loginModal").style.display = "none";
-  });
+document.getElementById("searchInput").addEventListener("input", function () {
+    const filter = this.value.toLowerCase();
+    const products = document.querySelectorAll(".lp-card");
+    products.forEach(product => {
+        const text = product.innerText.toLowerCase();
+        product.style.display = text.includes(filter) ? "" : "none";
+    });
+});
 </script>
 
 <script>
+  document.getElementById("userIcon").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById("loginModal").style.display = "flex";
+  });
+  document.getElementById("closeLogin").addEventListener("click", function () {
+    document.getElementById("loginModal").style.display = "none";
+  });
   const ADMIN_USER = "DYStore";
   const ADMIN_PASS = "123456789";
-
   document.getElementById("loginBtn").addEventListener("click", function () {
     const u = document.getElementById("loginUser").value;
     const p = document.getElementById("loginPass").value;
-
     if (u === ADMIN_USER && p === ADMIN_PASS) {
-      window.location.href = "admin.html";  // 登录成功后跳转
+      window.location.href = "admin.html";
     } else {
       alert("帳號或密碼錯誤！");
     }
   });
 </script>
 
-
 <script>
-  function enterAdminMode() {
-    const adminPanel = document.createElement("div");
-    adminPanel.id = "adminPanel";
-    adminPanel.style.position = "fixed";
-    adminPanel.style.bottom = "20px";
-    adminPanel.style.right = "20px";
-    adminPanel.style.zIndex = "1000";
+(function () {
+  const PREFIX = "products_";
+  const container = document.getElementById("offerProducts");
+  const counter = document.getElementById("promoCount");
+  if (!container) return;
 
-    adminPanel.innerHTML = `
-      <button id="addProductBtn" style="padding:10px 15px;">➕ 添加商品</button>
-    `;
+  const CATEGORY_LABELS = {
+    "prodotti-asiatici":"Prodotti Asiatici",
+    "casa":"Casa","cosmetici":"Cosmetici","pulizia":"Pulizia",
+    "elettronica":"Elettronica","giocattoli":"Giocattoli",
+    "cartoleria":"Cartoleria","ferramenta":"Ferramenta",
+    "piccoli-elettrodomestici":"Piccoli Elettrodomestici",
+    "regali":"Regali","auto":"Auto","plastica":"Plastica",
+    "animali":"Animali","cibo-per-animali":"Cibo per Animali"
+  };
 
-    document.body.appendChild(adminPanel);
-
-    document.getElementById("addProductBtn").addEventListener("click", function () {
-      const name = prompt("商品名稱：");
-      const price = prompt("商品價格：");
-
-      if (name && price) {
-        addNewProduct(name, price);
-      }
-    });
+  function getAllStoredProducts() {
+    const all = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (!key || key.indexOf(PREFIX) !== 0) continue;
+      let arr;
+      try { arr = JSON.parse(localStorage.getItem(key)); } catch (e) { continue; }
+      if (!Array.isArray(arr)) continue;
+      const categoryKey = key.slice(PREFIX.length);
+      const categoryLabel = CATEGORY_LABELS[categoryKey] || categoryKey;
+      arr.forEach(p => all.push(Object.assign({}, p, { categoryKey, categoryLabel })));
+    }
+    return all;
   }
-</script>
-<script>
-function loadProductsToHome() {
-  const container = document.querySelector(".products");
-  container.innerHTML = "";
 
-  const category = categorySelect.value;
-  const data = JSON.parse(localStorage.getItem("products_" + category)) || [];
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
 
-  data.forEach(item => {
-    container.innerHTML += `
-      <div class="product-card">
-        <div class="product-img">
-          <span class="promo-tag">Prezzo Shock</span>
-          <img src="${item.img}">
-        </div>
-        <div class="product-info">
-          <div class="product-name">${item.name}</div>
-          <div class="product-prices">
-            <span class="price-new">€${item.price}</span>
-            ${item.oldPrice ? `<span class="price-old">€${item.oldPrice}</span>` : ""}
+  function removeInjected() {
+    container.querySelectorAll('[data-injected="1"]').forEach(el => el.remove());
+  }
+
+  function starRow() {
+    let s = '<span class="lp-stars">';
+    for (let i = 0; i < 5; i++) {
+      s += '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+    }
+    return s + '</span>';
+  }
+
+  function getTagType(text) {
+    const t = text.toUpperCase();
+    if (t.includes("NUOVO") || t.includes("NEW") || t.includes("NOVIT")) return "new";
+    if (t.includes("ULTIM") || t.includes("PEZZI")) return "last";
+    if (t.includes("TOP") || t.includes("BEST") || t.includes("VIP")) return "top";
+    if (t.includes("SHOCK") || t.includes("OFFERTA") || t.includes("SCONTO") || t.includes("SUPER")) return "shock";
+    return "dark";
+  }
+
+  function buildTag(item) {
+    const p = parseFloat(item.price);
+    const op = parseFloat(item.oldPrice);
+    let discountPct = 0;
+    if (op && p && op > p) discountPct = Math.round((1 - p / op) * 100);
+
+    let label = "";
+    if (item.tag && item.tag.trim()) label = item.tag.trim();
+    else if (discountPct > 0) label = "Prezzo Shock";
+    if (!label) return "";
+
+    const type = getTagType(label);
+    const discountHTML = discountPct > 0 ? `<span class="lp-discount">−${discountPct}%</span>` : "";
+    return `<span class="lp-tag" data-tag-type="${type}">${esc(label)}${discountHTML}</span>`;
+  }
+
+  function render() {
+    removeInjected();
+    const data = getAllStoredProducts();
+
+    data.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "lp-card";
+      card.setAttribute("data-injected", "1");
+
+      const tagHTML = buildTag(item);
+      const catLabel = item.categoryLabel;
+
+      card.innerHTML = `
+        <div class="lp-img">
+          ${tagHTML}
+          <div class="lp-actions">
+            <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></button>
+            <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
           </div>
-          <button class="btn-add">Aggiungi</button>
+          ${item.img ? `<img src="${esc(item.img)}" alt="${esc(item.name)}">` : ''}
         </div>
-      </div>
-    `;
-  });
-}
+        <div class="lp-info">
+          <span class="lp-cat">${esc(catLabel)}</span>
+          <div class="lp-name">${esc(item.name)}</div>
+          <div class="lp-rating">${starRow()}<span>5.0 · Nuovo</span></div>
+          <div class="lp-prices">
+            <span class="lp-price-new"><span class="lp-currency">€</span>${esc(item.price)}</span>
+            ${item.oldPrice ? `<span class="lp-price-old">€${esc(item.oldPrice)}</span>` : ""}
+          </div>
+          <div class="lp-stock">Disponibile in negozio</div>
+          <button class="lp-btn" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Aggiungi</span>
+          </button>
+        </div>
+      `;
 
-loadProducts();
-loadProductsToHome();
+      container.appendChild(card);
+    });
+
+    // ✅ 动态统计：数容器里现有的所有卡片（手写 + 后台加的）
+    const totalCount = container.querySelectorAll(".lp-card").length;
+    counter.textContent = totalCount + " Offerte";
+  }
+
+  function updateVisibility() {
+    const wrap = document.getElementById("offerteSection");
+    if (!wrap) return;
+    // ✅ 直接数容器里现有的卡片，不再依赖 localStorage
+    const total = container.querySelectorAll(".lp-card").length;
+    wrap.style.display = total === 0 ? "none" : "";
+  }
+
+  function renderAndUpdate() {
+    render();
+    updateVisibility();
+    const si = document.getElementById("searchInput");
+    if (si && si.value.trim()) {
+      si.dispatchEvent(new Event("input"));
+    }
+  }
+
+  renderAndUpdate();
+  window.addEventListener("storage", renderAndUpdate);
+  window.addEventListener("pageshow", renderAndUpdate);
+})();
 </script>
 
 </body>
