@@ -158,6 +158,133 @@
   .lp-tag[data-tag-type="top"] { background:linear-gradient(135deg,#b45309 0%,#f59e0b 100%); box-shadow:0 4px 14px rgba(245,158,11,.4),inset 0 1px 0 rgba(255,255,255,.25); }
   .lp-tag[data-tag-type="dark"] { background:linear-gradient(135deg,#1f1f23 0%,#0e0e10 100%); box-shadow:0 4px 14px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1); }
   .lp-tag .lp-discount { display:inline-block; margin-left:6px; padding-left:6px; border-left:1px solid rgba(255,255,255,.35); font-weight:900; letter-spacing:0.5px; }
+
+/* ===================== CART ===================== */
+.cart-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 998;
+}
+.cart-overlay.open { opacity: 1; pointer-events: auto; }
+
+.cart-panel {
+  position: fixed; top: 0; right: 0;
+  width: 420px; max-width: 100%; height: 100%;
+  background: #fff;
+  box-shadow: -20px 0 60px rgba(0,0,0,0.2);
+  transform: translateX(100%);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+  z-index: 999;
+  display: flex; flex-direction: column;
+}
+.cart-panel.open { transform: translateX(0); }
+
+.cart-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.cart-header h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin: 0; }
+.cart-close {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: none; background: #f5f5f7; color: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s, transform .2s, color .2s;
+}
+.cart-close:hover { background: var(--red); color: #fff; transform: scale(1.05); }
+.cart-close svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 16px 20px; }
+
+.cart-item {
+  display: grid; grid-template-columns: 70px 1fr auto; gap: 12px;
+  align-items: center; padding: 14px;
+  border-radius: 12px; border: 1px solid var(--border);
+  margin-bottom: 10px; background: #fafafa;
+  transition: background .2s, border-color .2s;
+}
+.cart-item:hover { background: #fff; border-color: #ddd; }
+
+.cart-item-img {
+  width: 70px; height: 70px; border-radius: 10px;
+  background: #fff; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.cart-item-img img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+
+.cart-item-info { min-width: 0; }
+.cart-item-name {
+  font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 4px;
+  color: var(--black); display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.cart-item-price { font-size: 12px; color: var(--red); font-weight: 700; margin-bottom: 8px; }
+.cart-item-controls { display: flex; align-items: center; gap: 6px; }
+.qty-btn {
+  width: 26px; height: 26px; border-radius: 8px;
+  border: 1px solid var(--border); background: #fff; color: var(--black);
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1; padding: 0;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.qty-btn:hover { background: var(--black); color: #fff; border-color: var(--black); }
+.qty-num { min-width: 26px; text-align: center; font-size: 13px; font-weight: 700; }
+.cart-remove {
+  margin-left: auto; width: 26px; height: 26px; border-radius: 8px;
+  border: none; background: transparent; color: #bbb; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: color .2s, background .2s;
+}
+.cart-remove:hover { color: #fff; background: var(--red); }
+.cart-remove svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cart-item-subtotal { font-size: 14px; font-weight: 900; color: var(--black); white-space: nowrap; }
+
+.cart-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+.cart-empty svg { width: 56px; height: 56px; margin: 0 auto 18px; stroke: #ccc; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cart-empty h3 { font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+.cart-empty p { font-size: 13px; }
+
+.cart-footer { border-top: 1px solid var(--border); padding: 20px 24px 24px; background: #fff; }
+.cart-total-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+.cart-total-row span { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.2px; }
+.cart-total-row strong { font-size: 24px; font-weight: 900; color: var(--black); letter-spacing: -0.5px; }
+
+.cart-checkout {
+  position: relative; overflow: hidden;
+  width: 100%; background: var(--black); color: #fff;
+  border: none; padding: 16px; border-radius: 12px;
+  font-size: 12px; font-weight: 800; letter-spacing: 1.4px;
+  text-transform: uppercase; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; font-family: inherit;
+  transition: color .3s ease, transform .12s ease;
+}
+.cart-checkout::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  transform: translateY(101%);
+  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+  z-index: 0;
+}
+.cart-checkout:hover::before { transform: translateY(0); }
+.cart-checkout:active { transform: scale(.98); }
+.cart-checkout:disabled { opacity: 0.4; cursor: not-allowed; }
+.cart-checkout:disabled::before { transform: translateY(101%); }
+.cart-checkout > * { position: relative; z-index: 1; }
+.cart-checkout svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 480px) {
+  .cart-panel { width: 100%; }
+  .cart-item { grid-template-columns: 60px 1fr; gap: 10px; padding: 12px; }
+  .cart-item-img { width: 60px; height: 60px; }
+  .cart-item-subtotal { grid-column: 1 / -1; text-align: right; font-size: 15px; }
+}
 </style>
 </head>
 <body>
@@ -202,7 +329,7 @@
     <span class="hero-badge">Offerte del Mese</span>
     <h1>Prezzi <span>Shock</span> tutto l'anno</h1>
     <p>Scopri le offerte del mese su prodotti per la casa, cura personale, animali e molto altro.</p>
-    <a href="#offerte" class="hero-cta">
+    <a href="#offerteSection" class="hero-cta">
       Vedi tutte le offerte
       <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
     </a>
@@ -238,201 +365,7 @@
     </div>
     <span class="promo-count" id="promoCount">0 Offerte</span>
   </div>
-  <div class="products" id="offerProducts">
-        <!-- LEGO Star Wars Battaglia di Hoth -->
-    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/battle-of-hoth-20th-anniversary-edition-40333', '_blank')" style="cursor: pointer;">
-      <div class="lp-img">
-        <span class="lp-tag" data-tag-type="top">EDIZIONE LIMITATA</span>
-        <div class="lp-actions">
-          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          </button>
-          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          </button>
-        </div>
-        <img src="https://images.brickset.com/sets/images/40333-1.jpg" alt="LEGO Star Wars Battaglia di Hoth">
-      </div>
-      <div class="lp-info">
-        <span class="lp-cat">Star Wars</span>
-        <div class="lp-name">LEGO Star Wars – Battaglia di Hoth (20° Anniversario)</div>
-        <div class="lp-rating">
-          <span class="lp-stars">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </span>
-          <span>4.9 · 87 recensioni</span>
-        </div>
-        <div class="lp-prices">
-          <span class="lp-price-new"><span class="lp-currency">€</span>49,90</span>
-        </div>
-        <div class="lp-stock">Disponibile in negozio</div>
-        <button class="lp-btn" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Aggiungi</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- LEGO Technic Ford GT40 MKII -->
-    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/1966-ford-gt40-mkii-race-car-42223', '_blank')" style="cursor: pointer;">
-      <div class="lp-img">
-        <span class="lp-tag" data-tag-type="shock">PREZZO SHOCK</span>
-        <div class="lp-actions">
-          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          </button>
-          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          </button>
-        </div>
-        <img src="https://images.brickset.com/sets/images/42223-1.jpg" alt="LEGO Technic Ford GT40 MKII 1966">
-      </div>
-      <div class="lp-info">
-        <span class="lp-cat">Technic</span>
-        <div class="lp-name">LEGO Technic – Ford GT40 MKII 1966</div>
-        <div class="lp-rating">
-          <span class="lp-stars">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </span>
-          <span>4.8 · 56 recensioni</span>
-        </div>
-        <div class="lp-prices">
-          <span class="lp-price-new"><span class="lp-currency">€</span>69,90</span>
-          <span class="lp-price-old">€74,99</span>
-        </div>
-        <div class="lp-stock">Disponibile in negozio</div>
-        <button class="lp-btn" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Aggiungi</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- LEGO City Furgone delle Consegne -->
-    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/the-lego-van-60500', '_blank')" style="cursor: pointer;">
-      <div class="lp-img">
-        <span class="lp-tag" data-tag-type="last">ULTIMI PEZZI</span>
-        <div class="lp-actions">
-          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          </button>
-          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          </button>
-        </div>
-        <img src="https://images.brickset.com/sets/images/60500-1.jpg" alt="LEGO City Furgone delle Consegne">
-      </div>
-      <div class="lp-info">
-        <span class="lp-cat">City</span>
-        <div class="lp-name">LEGO City – Furgone delle Consegne</div>
-        <div class="lp-rating">
-          <span class="lp-stars">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </span>
-          <span>4.7 · 123 recensioni</span>
-        </div>
-        <div class="lp-prices">
-          <span class="lp-price-new"><span class="lp-currency">€</span>23,99</span>
-          <span class="lp-price-old">€29,99</span>
-        </div>
-        <div class="lp-stock">Disponibile in negozio</div>
-        <button class="lp-btn" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Aggiungi</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- LEGO Technic Ducati Panigale V4 S -->
-    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/ducati-panigale-v4-s-motorcycle-42202', '_blank')" style="cursor: pointer;">
-      <div class="lp-img">
-        <span class="lp-tag" data-tag-type="shock">PREZZO SHOCK</span>
-        <div class="lp-actions">
-          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          </button>
-          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          </button>
-        </div>
-        <img src="https://images.brickset.com/sets/images/42202-1.jpg" alt="LEGO Technic Ducati Panigale V4 S">
-      </div>
-      <div class="lp-info">
-        <span class="lp-cat">Technic</span>
-        <div class="lp-name">LEGO Technic – Ducati Panigale V4 S</div>
-        <div class="lp-rating">
-          <span class="lp-stars">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </span>
-          <span>4.9 · 201 recensioni</span>
-        </div>
-        <div class="lp-prices">
-          <span class="lp-price-new"><span class="lp-currency">€</span>189,99</span>
-          <span class="lp-price-old">€199,99</span>
-        </div>
-        <div class="lp-stock">Disponibile in negozio</div>
-        <button class="lp-btn" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Aggiungi</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- LEGO Harry Potter Castello di Hogwarts: Ala Est -->
-    <div class="lp-card" onclick="window.open('https://www.lego.com/it-it/product/hogwarts-castle-east-wing-76473', '_blank')" style="cursor: pointer;">
-      <div class="lp-img">
-        <span class="lp-tag" data-tag-type="new">NUOVO ARRIVO</span>
-        <div class="lp-actions">
-          <button class="lp-icon-btn" aria-label="Preferiti" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          </button>
-          <button class="lp-icon-btn" aria-label="Vista rapida" onclick="event.stopPropagation()">
-            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          </button>
-        </div>
-        <img src="https://images.brickset.com/sets/images/76473-1.jpg" alt="LEGO Harry Potter Castello di Hogwarts: Ala Est">
-      </div>
-      <div class="lp-info">
-        <span class="lp-cat">Harry Potter</span>
-        <div class="lp-name">LEGO Harry Potter – Castello di Hogwarts: Ala Est</div>
-        <div class="lp-rating">
-          <span class="lp-stars">
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </span>
-          <span>5.0 · 34 recensioni</span>
-        </div>
-        <div class="lp-prices">
-          <span class="lp-price-new"><span class="lp-currency">€</span>224,99</span>
-          <span class="lp-price-old">€249,99</span>
-        </div>
-        <div class="lp-stock">Disponibile in negozio</div>
-        <button class="lp-btn" onclick="event.stopPropagation()">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Aggiungi</span>
-        </button>
-      </div>
-    </div>
-  </div>
+<div class="products" id="offerProducts"></div>
 </section>
 
 <section class="delivery-banner">
@@ -442,7 +375,7 @@
       <div class="delivery-item">
         <span class="icon"><svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></span>
         <h3>Consegna a Domicilio</h3>
-        <p>Gratuita per ordini superiori a 50€. Solo nella zona di Fiorenzuola d'Arda.</p>
+        <p>Offriamo la spedizione gratuita per tutti gli ordini superiori a 50€, con consegna in tutta la provincia di Piacenza (Fiorenzuola d'Arda inclusa).</p>
       </div>
       <div class="delivery-item">
         <span class="icon"><svg width="36" height="36" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>
@@ -483,6 +416,29 @@
   </div>
   <div class="footer-bottom">© 2026 DY STORE HOME CASA & BRICO — Tutti i diritti riservati. P.IVA [DA INSERIRE]</div>
 </footer>
+<!-- 购物车遮罩 -->
+<div id="cartOverlay" class="cart-overlay"></div>
+
+<!-- 购物车侧栏 -->
+<aside id="cartPanel" class="cart-panel" aria-label="Carrello">
+  <div class="cart-header">
+    <h2>Il Tuo Carrello</h2>
+    <button id="cartClose" class="cart-close" aria-label="Chiudi">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Totale</span>
+      <strong id="cartTotal">€0,00</strong>
+    </div>
+    <button id="cartCheckout" class="cart-checkout" disabled>
+      <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      <span>Ordina su WhatsApp</span>
+    </button>
+  </div>
+</aside>
 
 <div id="loginModal" class="modal" style="display:none;">
   <div class="login-box">
@@ -516,10 +472,11 @@ document.getElementById("searchInput").addEventListener("input", function () {
   });
   const ADMIN_USER = "DYStore";
   const ADMIN_PASS = "123456789";
-  document.getElementById("loginBtn").addEventListener("click", function () {
+   document.getElementById("loginBtn").addEventListener("click", function () {
     const u = document.getElementById("loginUser").value;
     const p = document.getElementById("loginPass").value;
     if (u === ADMIN_USER && p === ADMIN_PASS) {
+      sessionStorage.setItem("dystore_admin_auth", "1");
       window.location.href = "admin.html";
     } else {
       alert("帳號或密碼錯誤！");
@@ -669,6 +626,183 @@ document.getElementById("searchInput").addEventListener("input", function () {
   window.addEventListener("pageshow", renderAndUpdate);
 })();
 </script>
+<script>
+(function () {
+  const CART_KEY = "dystore_cart";
+  const WHATSAPP_NUMBER = "393331234567"; // ← 改成你的号码（意大利 +39）
 
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+    catch (e) { return []; }
+  }
+  function setCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateBadge();
+    renderCart();
+  }
+  function makeId(name, price) {
+    return (name + "|" + price).toLowerCase().replace(/\s+/g, "_").slice(0, 60);
+  }
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function fmt(n) { return "€" + Number(n).toFixed(2).replace(".", ","); }
+
+  function addToCart(item) {
+    const cart = getCart();
+    const id = makeId(item.name, item.price);
+    const existing = cart.find(x => x.id === id);
+    if (existing) existing.qty += 1;
+    else cart.push({ id, name: item.name, price: parseFloat(item.price), img: item.img || "", qty: 1 });
+      setCart(cart);
+  }
+  function removeFromCart(id) { setCart(getCart().filter(x => x.id !== id)); }
+  function changeQty(id, delta) {
+    const cart = getCart();
+    const it = cart.find(x => x.id === id);
+    if (!it) return;
+    it.qty += delta;
+    if (it.qty <= 0) { setCart(cart.filter(x => x.id !== id)); return; }
+    setCart(cart);
+  }
+  function updateBadge() {
+    const total = getCart().reduce((s, x) => s + x.qty, 0);
+    document.querySelectorAll(".cart-badge").forEach(el => { el.textContent = total; });
+  }
+
+  function renderCart() {
+    const cart = getCart();
+    const container = document.getElementById("cartItems");
+    const totalEl = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("cartCheckout");
+    if (!container) return;
+
+    if (cart.length === 0) {
+      container.innerHTML = `
+        <div class="cart-empty">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <h3>Il carrello è vuoto</h3>
+          <p>Aggiungi qualche prodotto per iniziare.</p>
+        </div>
+      `;
+      totalEl.textContent = "€0,00";
+      checkoutBtn.disabled = true;
+      return;
+    }
+
+    checkoutBtn.disabled = false;
+    let total = 0;
+    container.innerHTML = cart.map(it => {
+      const sub = it.price * it.qty;
+      total += sub;
+      return `
+        <div class="cart-item">
+          <div class="cart-item-img">
+            ${it.img ? `<img src="${esc(it.img)}" alt="${esc(it.name)}">` : ''}
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${esc(it.name)}</div>
+            <div class="cart-item-price">${fmt(it.price)}</div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" data-act="dec" data-id="${esc(it.id)}">−</button>
+              <span class="qty-num">${it.qty}</span>
+              <button class="qty-btn" data-act="inc" data-id="${esc(it.id)}">+</button>
+              <button class="cart-remove" data-act="rm" data-id="${esc(it.id)}" aria-label="Rimuovi">
+                <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>
+              </button>
+            </div>
+          </div>
+          <div class="cart-item-subtotal">${fmt(sub)}</div>
+        </div>
+      `;
+    }).join("");
+
+    totalEl.textContent = fmt(total);
+  }
+
+  function openCart() {
+    document.getElementById("cartPanel").classList.add("open");
+    document.getElementById("cartOverlay").classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeCart() {
+    document.getElementById("cartPanel").classList.remove("open");
+    document.getElementById("cartOverlay").classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  function checkout() {
+    const cart = getCart();
+    if (cart.length === 0) return;
+    let msg = "Ciao! Vorrei ordinare:%0A%0A";
+    let total = 0;
+    cart.forEach(it => {
+      const sub = it.price * it.qty;
+      total += sub;
+      msg += "• " + it.qty + "x " + it.name + " — " + fmt(sub) + "%0A";
+    });
+    msg += "%0ATotale: " + fmt(total);
+    window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + msg, "_blank");
+  }
+
+  // ============ 点击事件（捕获阶段，抢先处理）============
+  document.addEventListener("click", (e) => {
+    // 加入购物车
+    const addBtn = e.target.closest(".lp-btn");
+    if (addBtn) {
+      e.preventDefault(); e.stopPropagation();
+      const card = addBtn.closest(".lp-card");
+      if (card) {
+        const name = (card.querySelector(".lp-name") || {}).innerText?.trim() || "";
+        const priceRaw = (card.querySelector(".lp-price-new") || {}).innerText || "0";
+        const price = parseFloat(priceRaw.replace(/[^0-9,.]/g, "").replace(",", "."));
+        const img = (card.querySelector(".lp-img img") || {}).src || "";
+        if (name && !isNaN(price)) addToCart({ name, price, img });
+      }
+      return;
+    }
+    // 打开购物车
+    const cartIcon = e.target.closest('a[aria-label="Carrello"]');
+    if (cartIcon) {
+      e.preventDefault(); e.stopPropagation();
+      openCart(); return;
+    }
+    // 关闭
+    if (e.target.id === "cartOverlay" || e.target.closest("#cartClose")) {
+      e.preventDefault(); e.stopPropagation();
+      closeCart(); return;
+    }
+    // 购物车操作
+    const actBtn = e.target.closest("[data-act]");
+    if (actBtn) {
+      e.preventDefault(); e.stopPropagation();
+      const act = actBtn.dataset.act, id = actBtn.dataset.id;
+      if (act === "inc") changeQty(id, 1);
+      else if (act === "dec") changeQty(id, -1);
+      else if (act === "rm") removeFromCart(id);
+      return;
+    }
+    // 结算
+    if (e.target.closest("#cartCheckout")) {
+      e.preventDefault(); e.stopPropagation();
+      checkout(); return;
+    }
+  }, true);
+
+  // ESC 关闭
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeCart();
+  });
+
+  updateBadge();
+  renderCart();
+})();
+</script>
 </body>
 </html>
