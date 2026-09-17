@@ -552,21 +552,18 @@ document.getElementById("searchInput").addEventListener("input", function () {
 
       const totalCount = container.querySelectorAll(".lp-card").length;
       counter.textContent = totalCount + " Offerte";
+            // ✅ 渲染完立刻判断可见性
+      const wrap = document.getElementById("offerteSection");
+      if (wrap) {
+        wrap.style.display = totalCount === 0 ? "none" : "";
+      }
     } finally {
       isRendering = false;
     }
   }
 
-  function updateVisibility() {
-    const wrap = document.getElementById("offerteSection");
-    if (!wrap) return;
-    const total = container.querySelectorAll(".lp-card").length;
-    wrap.style.display = total === 0 ? "none" : "";
-  }
-
-  async function renderAndUpdate() {
-    await render();
-    updateVisibility();
+   function renderAndUpdate() {
+    render();   // 去掉 await（因为 render 内部自己管可见性）
     const si = document.getElementById("searchInput");
     if (si && si.value.trim()) {
       si.dispatchEvent(new Event("input"));
