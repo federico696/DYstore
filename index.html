@@ -501,17 +501,41 @@ document.getElementById("searchInput").addEventListener("input", function () {
     "animali":"Animali","cibo-per-animali":"Cibo per Animali"
   };
 
-  function getAllStoredProducts() {
-    const all = [];
+   // ✅ 新：先从 products.json 读，再合并 localStorage
+  async function getAllStoredProducts() {
+    const merged = {};
+
+    // 1. 尝试读 products.json
+    try {
+      const res = await fetch("products.json?v=" + Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.products && typeof data.products === "object") {
+          Object.entries(data.products).forEach(([cat, arr]) => {
+            if (Array.isArray(arr)) merged[cat] = arr.slice();
+          });
+        }
+      }
+    } catch (e) {
+      // 本地开发时可能没这文件，忽略
+    }
+
+    // 2. 合并 localStorage（覆盖同名产品）
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (!key || key.indexOf(PREFIX) !== 0) continue;
-      let arr;
-      try { arr = JSON.parse(localStorage.getItem(key)); } catch (e) { continue; }
-      if (!Array.isArray(arr)) continue;
-      const categoryKey = key.slice(PREFIX.length);
-      const categoryLabel = CATEGORY_LABELS[categoryKey] || categoryKey;
-      arr.forEach(p => all.push(Object.assign({}, p, { categoryKey, categoryLabel })));
+      const category = key.slice(PREFIX.length);
+      try {
+        const arr = JSON.parse(localStorage.getItem(key));
+        if (Array.isArray(arr)) merged[category] = arr;
+      } catch (e) {}
+    }
+
+    // 3. 展开为数组
+    const all = [];
+    for (const [cat, arr] of Object.entries(merged)) {
+      const categoryLabel = CATEGORY_LABELS[cat] || cat;
+      arr.forEach(p => all.push(Object.assign({}, p, { categoryKey: cat, categoryLabel })));
     }
     return all;
   }
@@ -559,9 +583,9 @@ document.getElementById("searchInput").addEventListener("input", function () {
     return `<span class="lp-tag" data-tag-type="${type}">${esc(label)}${discountHTML}</span>`;
   }
 
-  function render() {
-    removeInjected();
-    const data = getAllStoredProducts();
+  
+    removeInjected();async function render() {
+    const data = await getAllStoredProducts();
 
     data.forEach(item => {
       const card = document.createElement("div");
@@ -612,8 +636,8 @@ document.getElementById("searchInput").addEventListener("input", function () {
     wrap.style.display = total === 0 ? "none" : "";
   }
 
-  function renderAndUpdate() {
-    render();
+  async function renderAndUpdate() {
+    await render();
     updateVisibility();
     const si = document.getElementById("searchInput");
     if (si && si.value.trim()) {
